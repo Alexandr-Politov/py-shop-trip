@@ -131,11 +131,15 @@ You design application architecture by yourself, but there are some rules:
   <summary>
     Hint: modules structure example if you have problems with architecture.
   </summary>
-  py-shop-trip/<br>
-  |-- car.py<br>
-  |-- customer.py<br>
-  |-- main.py<br>
-  └-- shop.py<br>
+
+```
+└── py-shop-trip
+  └── app
+    ├── car.py
+    ├── customer.py
+    ├── main.py
+    └── shop.py
+```
 </details>
 
 

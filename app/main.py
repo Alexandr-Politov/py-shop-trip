@@ -66,9 +66,8 @@ def shop_trip() -> None:
                   f"breads for {int(min_bread_cost)} dollars")
             print(f"{customer.product_cart['butter']} "
                   f"butters for {min_butter_cost} dollars")
-            print(f"Total cost is "
-                  f"{min_milk_cost + min_bread_cost
-                     + min_butter_cost} dollars")
+            print(f"Total cost is {min_milk_cost + min_bread_cost
+                                   + min_butter_cost} dollars")
             print("See you again!\n")
             print(f"{customer.name} rides home")
             print(f"{customer.name} now has "

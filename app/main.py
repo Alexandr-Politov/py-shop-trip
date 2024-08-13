@@ -60,11 +60,11 @@ def shop_trip() -> None:
             print("Date: 04/01/2021 12:33:41")
             print(f"Thanks, {customer.name}, for your purchase!")
             print("You have bought:")
-            print(f"{customer.product_cart['milk']} "
+            print(f"{customer.product_cart["milk"]} "
                   f"milks for {min_milk_cost} dollars")
-            print(f"{customer.product_cart['bread']} "
+            print(f"{customer.product_cart["bread"]} "
                   f"breads for {int(min_bread_cost)} dollars")
-            print(f"{customer.product_cart['butter']} "
+            print(f"{customer.product_cart["butter"]} "
                   f"butters for {min_butter_cost} dollars")
             print(f"Total cost is {min_milk_cost + min_bread_cost
                                    + min_butter_cost} dollars")

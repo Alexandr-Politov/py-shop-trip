@@ -4,7 +4,7 @@ from app.customer import Customer
 from app.shop import Shop
 
 
-with open("config.json", "r") as json_file:
+with open("app/config.json", "r") as json_file:
     data_dict = json.load(json_file)
 
 FUEL_PRICE = data_dict["FUEL_PRICE"]

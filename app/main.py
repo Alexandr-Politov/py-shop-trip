@@ -56,19 +56,13 @@ def shop_trip() -> None:
             print(f"{customer.name} doesn't have enough "
                   f"money to make a purchase in any shop")
         else:
-            print(f"{customer.name} rides to {min_shop}\n")
-            print("Date: 04/01/2021 12:33:41")
-            print(f"Thanks, {customer.name}, for your purchase!")
-            print("You have bought:")
-            print(f"{customer.product_cart['milk']} "
-                  f"milks for {min_milk_cost} dollars")
-            print(f"{customer.product_cart['bread']} "
-                  f"breads for {int(min_bread_cost)} dollars")
-            print(f"{customer.product_cart['butter']} "
-                  f"butters for {min_butter_cost} dollars")
-            print(f"Total cost is {min_milk_cost + min_bread_cost
-                                   + min_butter_cost} dollars")
-            print("See you again!\n")
-            print(f"{customer.name} rides home")
-            print(f"{customer.name} now has "
-                  f"{customer.money - min_total_cost} dollars\n")
+            print(f"""{customer.name} rides to {min_shop}\n
+Date: 04/01/2021 12:33:41
+Thanks, {customer.name}, for your purchase!
+You have bought:
+{customer.product_cart["milk"]} milks for {min_milk_cost} dollars
+{customer.product_cart["bread"]} breads for {int(min_bread_cost)} dollars
+{customer.product_cart["butter"]} butters for {min_butter_cost} dollars
+Total cost is {min_milk_cost + min_bread_cost + min_butter_cost} dollars
+See you again!\n\n{customer.name} rides home
+{customer.name} now has {customer.money - min_total_cost} dollars\n""")

@@ -56,6 +56,7 @@ def shop_trip() -> None:
                 f"{customer.product_cart[product]} {product}s for {prod_cost} "
                 f"dollars"
             )
-        print(f"""Total cost is {min_shop.calc_total_cost(customer.product_cart)} dollars
+        total_cost = min_shop.calc_total_cost(customer.product_cart)
+        print(f"""Total cost is {total_cost} dollars
 See you again!\n\n{customer.name} rides home
 {customer.name} now has {customer.money - min_total_cost} dollars\n""")

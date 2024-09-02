@@ -42,14 +42,20 @@ def shop_trip() -> None:
             print(f"{customer.name} doesn't have enough "
                   f"money to make a purchase in any shop")
             break
-        print(f"{customer.name} rides to {min_shop.name}\n\n"
-              f"Date: 04/01/2021 12:33:41\n"
-              f"Thanks, {customer.name}, for your purchase!\n"
-              f"You have bought:")
+        print(
+            f"{customer.name} rides to {min_shop.name}\n\n"
+            f"Date: 04/01/2021 12:33:41\n"
+            f"Thanks, {customer.name}, for your purchase!\n"
+            f"You have bought:"
+        )
         for product in customer.product_cart:
-            print(f"{customer.product_cart[product]} {product}s for {min_shop
-                  .product_cost(product, customer.product_cart[product])} "
-                  f"dollars")
+            prod_cost = min_shop.product_cost(
+                product, customer.product_cart[product]
+            )
+            print(
+                f"{customer.product_cart[product]} {product}s for {prod_cost} "
+                f"dollars"
+            )
         print(f"""Total cost is {min_shop.calc_total_cost(customer.product_cart)} dollars
 See you again!\n\n{customer.name} rides home
 {customer.name} now has {customer.money - min_total_cost} dollars\n""")

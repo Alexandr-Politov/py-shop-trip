@@ -21,25 +21,13 @@ def shop_trip() -> None:
     for customer in customers:
         print(f"{customer.name} has {customer.money} dollars")
 
-        min_milk_cost = Decimal("0")
-        min_bread_cost = Decimal("0")
-        min_butter_cost = Decimal("0")
         min_total_cost = Decimal("Infinity")
         min_shop = None
 
         for shop in shops:
-            distance = Decimal((((shop.location[0] - customer.location[0]) ** 2
-                                 + (shop.location[1]
-                                    - customer.location[1]) ** 2) ** 0.5))
-            fuel_cost = (distance * Decimal(customer.car["fuel_consumption"])
-                         / Decimal("100") * FUEL_PRICE) * 2
-            milk_cost = (Decimal(str(customer.product_cart["milk"]))
-                         * Decimal(str(shop.products["milk"])))
-            bread_cost = (Decimal(str(customer.product_cart["bread"]))
-                          * Decimal(str(shop.products["bread"])))
-            butter_cost = (Decimal(str(customer.product_cart["butter"]))
-                           * Decimal(str(shop.products["butter"])))
-            total_cost = fuel_cost + milk_cost + bread_cost + butter_cost
+            fuel_cost = customer.calc_trip_cost(shop, FUEL_PRICE) * 2
+            products_price = shop.calc_total_cost(customer.product_cart)
+            total_cost = fuel_cost + products_price
             total_cost = total_cost.quantize(Decimal("0.01"),
                                              rounding=ROUND_HALF_UP)
 
@@ -48,22 +36,20 @@ def shop_trip() -> None:
 
             if total_cost <= min_total_cost:
                 min_total_cost = total_cost
-                min_milk_cost = milk_cost
-                min_bread_cost = bread_cost
-                min_butter_cost = butter_cost
-                min_shop = shop.name
+                min_shop = shop
 
         if customer.money < min_total_cost:
             print(f"{customer.name} doesn't have enough "
                   f"money to make a purchase in any shop")
-        else:
-            print(f"""{customer.name} rides to {min_shop}\n
-Date: 04/01/2021 12:33:41
-Thanks, {customer.name}, for your purchase!
-You have bought:
-{customer.product_cart["milk"]} milks for {min_milk_cost} dollars
-{customer.product_cart["bread"]} breads for {int(min_bread_cost)} dollars
-{customer.product_cart["butter"]} butters for {min_butter_cost} dollars
-Total cost is {min_milk_cost + min_bread_cost + min_butter_cost} dollars
+            break
+        print(f"{customer.name} rides to {min_shop.name}\n\n"
+              f"Date: 04/01/2021 12:33:41\n"
+              f"Thanks, {customer.name}, for your purchase!\n"
+              f"You have bought:")
+        for product in customer.product_cart:
+            print(f"{customer.product_cart[product]} {product}s for {min_shop
+                  .product_cost(product, customer.product_cart[product])} "
+                  f"dollars")
+        print(f"""Total cost is {min_shop.calc_total_cost(customer.product_cart)} dollars
 See you again!\n\n{customer.name} rides home
 {customer.name} now has {customer.money - min_total_cost} dollars\n""")

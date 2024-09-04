@@ -16,8 +16,6 @@ class Shop:
         return product_cost
 
     def calc_total_cost(self, product_cart: dict) -> Decimal:
-        total_cost = Decimal("0")
-        for product in product_cart:
-            total_cost += (Decimal(str(self.products[product]))
-                           * Decimal(str(product_cart[product])))
-        return total_cost
+        return Decimal(str(sum(Decimal(str(self.products[product]))
+                               * Decimal(str(product_cart[product]))
+                               for product in product_cart)))
